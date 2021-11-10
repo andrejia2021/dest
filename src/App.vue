@@ -4,23 +4,26 @@
       please choose your workspace directory
     </div>
     <div class="area-folder" v-if="workspace">
+      <div class="area-title">Projects</div>
       <div class="project" @click="setSelectedProject(index)" :data-chosen="selectedProject == index" v-if="projects.length > 0" v-for="(project,index) in projects">
         <div class="project-name">{{project.project}}</div>
-        <div class="project-version">{{project.version}}</div>
+        <div class="project-version">version: {{project.version}}</div>
         <div class="el-icon-edit-outline" title="modify" @click.stop="modifyChanges(project)"></div>
         <div class="el-icon-refresh" title="restore" @click.stop="restoreChanges(project)"></div>
       </div>
     </div>
     <div class="area-file" v-if="workspace">
+      <div class="area-title">Files</div>
       <div v-if="nowProject">
         <div class="file" @click="setSelectedFile(index)" :data-chosen="selectedFile == index" v-for="(file,index) in nowProject.files">
           <div class="file-path">{{file.path}}</div>
           <div class="el-icon-delete" @click.stop="delFile(index)"></div>
         </div>
       </div>
-      <div class="area-add" @click="addFiles">add file</div>
+      <div class="area-add el-icon-circle-plus-outline" title="add file" @click="addFiles"></div>
     </div>
     <div class="area-change" v-if="workspace">
+      <div class="area-title">Changes</div>
       <div v-if="nowFile && nowFile.changes">
         <div class="change" v-for="(change,index) in nowFile.changes">
           <el-input class="change-from" type="textarea" :rows="6" placeholder="from code" v-model="change.from"></el-input>
@@ -28,7 +31,7 @@
           <el-input class="change-to" type="textarea" :rows="6" placeholder="to code" v-model="change.to"></el-input>
         </div>
       </div>
-      <div class="area-add" @click="addChanges">add change</div>
+      <div class="area-add el-icon-circle-plus-outline" title="add change" @click="addChanges"></div>
     </div>
   </div>
 </template>
