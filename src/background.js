@@ -3,6 +3,7 @@ const { Menu, Notification, dialog } = require("electron");
 import { exerTerminal } from "./common/terminal";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
+const fixPath = require("fix-path");
 
 const Store = require("electron-store");
 const store = new Store();
@@ -18,6 +19,7 @@ protocol.registerSchemesAsPrivileged([
 
 let win;
 async function createWindow() {
+  fixPath();
   // Create the browser window.
   win = new BrowserWindow({
     width: 1400,
@@ -81,8 +83,7 @@ app.on("ready", async () => {
       label: "environment",
       submenu: [
         {
-          label: "QA",
-          accelerator: "CmdOrCtrl+q",
+          label: "switch to QA",
           click: () => {
             exerTerminal("kubectx gke_select-eng-us-2pqa_us-west1_vm-qa-gke");
             new Notification({
@@ -95,8 +96,7 @@ app.on("ready", async () => {
           type: "separator",
         },
         {
-          label: "DEV",
-          accelerator: "CmdOrCtrl+d",
+          label: "switch to DEV",
           click: () => {
             exerTerminal(
               "kubectx gke_xperiences-eng-cn-dev_asia-east2_xpe-dev-gke"

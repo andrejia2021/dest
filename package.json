@@ -2,6 +2,7 @@
   "name": "DEST",
   "version": "0.1.0",
   "private": true,
+  "asar": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -30,6 +31,7 @@
     "electron": "^13.0.0",
     "electron-devtools-installer": "^3.1.0",
     "element-ui": "^2.15.6",
+    "fix-path": "^2.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
