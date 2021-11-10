@@ -115,6 +115,9 @@ export default {
     setSelectedFile(index){
       this.selectedFile = index;
     },
+  },
+  mounted(){
+    ipcRenderer.send("getworkspace", true);
   }
 };
 </script>

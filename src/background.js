@@ -41,10 +41,6 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
   }
-
-  if (store.has("workspace")) {
-    win.webContents.send("setworkspace", store.get("workspace"));
-  }
 }
 
 // Quit when all windows are closed.
@@ -200,6 +196,12 @@ ipcMain.on("message", (e, message) => {
     title: "DEST Message",
     body: message,
   }).show();
+});
+
+ipcMain.on("getworkspace", (e, message) => {
+  if (store.has("workspace")) {
+    win.webContents.send("setworkspace", store.get("workspace"));
+  }
 });
 
 ipcMain.on("modifyOrRestoreChanges", (e, project, ismodify) => {
